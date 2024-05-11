@@ -7,6 +7,7 @@ Deverá também ter um método para mostrar quais são os itens do “combo”. 
 Para testara sua implementação utilize o código abaixo
 
 import java.util.Scanner;
+
   public class Main {
     public static void main(String[] args) {
       System.out.println("Selecione seu compo");
