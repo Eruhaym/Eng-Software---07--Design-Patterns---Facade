@@ -1,0 +1,108 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Selecione seu combo");
+        System.out.println("1. Combo Master");
+        System.out.println("2. Super Combo");
+        System.out.print("Sua escolha: ");
+
+        Scanner input = new Scanner(System.in);
+        int tipo = input.nextInt();
+
+        Combo combo = new Combo();
+
+        switch (tipo) {
+            case 1:
+                combo.fazerCombo("Hamburguer Master", 200, "G", "Sobremesa Grande", "Bebida Grande", 500);
+                break;
+            case 2:
+                combo.fazerCombo("Hamburguer Duplo", 300, "M", "Sobremesa Média", "Bebida Pequena", 300);
+                break;
+            default:
+                System.out.println("Opção inválida");
+                return;
+        }
+
+        System.out.println("Itens do Combo:");
+        combo.mostrarItensEscolhidos();
+    }
+
+    static class Combo {
+        private Hamburguer hamburguer;
+        private Sobremesa sobremesa;
+        private Bebida bebida;
+
+        public Combo() {
+            this.hamburguer = new Hamburguer();
+            this.sobremesa = new Sobremesa();
+            this.bebida = new Bebida();
+        }
+
+        public void fazerCombo(String tipoHamburguer, int gramasHamburguer, String tamanhoSobremesa, String tipoSobremesa, String tipoBebida, int mlBebida) {
+            hamburguer.escolherHamburguer(tipoHamburguer, gramasHamburguer);
+            sobremesa.escolherSobremesa(tipoSobremesa, tamanhoSobremesa);
+            bebida.escolherBebida(tipoBebida, mlBebida);
+        }
+
+        public void mostrarItensEscolhidos() {
+            System.out.println("Hamburguer escolhido: " + hamburguer.getTipo() + " (" + hamburguer.getGramas() + "g)");
+            System.out.println("Sobremesa escolhida: " + sobremesa.getTipo() + " (" + sobremesa.getTamanho() + ")");
+            System.out.println("Bebida escolhida: " + bebida.getTipo() + " (" + bebida.getMl() + "ml)");
+        }
+    }
+
+    static class Hamburguer {
+        private String tipo;
+        private int gramas;
+
+        public void escolherHamburguer(String tipo, int gramas) {
+            this.tipo = tipo;
+            this.gramas = gramas;
+        }
+
+        public String getTipo() {
+            return tipo;
+        }
+
+        public int getGramas() {
+            return gramas;
+        }
+    }
+
+    static class Sobremesa {
+        private String tipo;
+        private String tamanho;
+
+        public void escolherSobremesa(String tipo, String tamanho) {
+            this.tipo = tipo;
+            this.tamanho = tamanho;
+        }
+
+        public String getTipo() {
+            return tipo;
+        }
+
+        public String getTamanho() {
+            return tamanho;
+        }
+    }
+
+    static class Bebida {
+        private String tipo;
+        private int ml;
+
+        public void escolherBebida(String tipo, int ml) {
+            this.tipo = tipo;
+            this.ml = ml;
+        }
+
+        public String getTipo() {
+            return tipo;
+        }
+
+        public int getMl() {
+            return ml;
+        }
+    }
+}
